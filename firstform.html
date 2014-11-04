@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<script src="jquery/jquery-2.1.1.js"></script>
+		<script>
+			$(document).ready(function (event) {
+				// capturar o submit do form
+				$("#f1").submit(function (e) {
+					if ($("#ipass").val() == 5) {
+						$("#f1").submit();
+					} else {
+						alert("passwords nao coincidem");
+					}
+					e.preventDefault();
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<form id="f1" name="f1" action="dump.php" method="get">
+			<fieldset id="fs1">
+				<legend>info geral</legend>
+				<label for="inome">Nome:</label><input type="text" id="inome" name="vnome" placeholder="inserir nome" accesskey="n"/>
+				<label for="iapelido">Apelido:</label><input type="text" id="iapelido" name="vapelido" value="Silva"/>
+				<br/>
+				<label for="iuser">Username:</label><input type="text" id="iuser" name="vuser"/>
+				<br/>
+				<label for="iemail">Email:</label><input type="email" id="iemail" name="vemail"/>
+				<br/>
+				<label for="idata">Data de Nascimento:</label><input type="date" id="idata" name="vdata" />
+				<br/>
+				<label for="ipass">password</label><input type="password" id="ipass" name="vpass"/>
+				<label for="ipass2">re-escreva password:</label><input type="password" id="ipass2" name="vpass2"/>
+			</fieldset>
+			<fieldset id="fs2">
+				<legend>género</legend>
+				<label for="igm">M</label><input type="radio" name="vgender" id="igm" value="M" checked="checked"/>
+				<label for="igf">F</label><input type="radio" name="vgender" id="igf" value="F"/>
+			</fieldset>
+			<fieldset id="fs3">
+				<legend>Idiomas</legend>
+				<input type="checkbox" name="vidiom[]" id="iifr" value="FR"/><label for="iifr">Francês</label>
+				<label for="iipt">Português</label><input type="checkbox" name="vidiom[]" id="iipt" value="PT" checked="checked"/>
+				<label for="iien">Inglês</label><input type="checkbox" name="vidiom[]" id="iien" value="EN"/>
+			</fieldset>
+			<fieldset id="fs4">
+				<legend>comentários</legend>
+				<textarea cols="50" rows="5" name="vcomm" id="icomm">
+O seu comentário aqui:
+				</textarea>
+			</fieldset>
+			<fieldset id="fs5">
+				<legend>submissão</legend>
+				<input type="submit" value="submit form"/>
+				<input type="reset" value="clear form"/>
+			</fieldset>
+		</form>
+	</body>
+</html>
