@@ -1,41 +1,78 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<script src="jquery/jquery-2.1.1.js"></script>
+		<script src="jquery/jquery-1.9.0.js"></script>
+		<script src="jquery/jquery.validate.js"></script>
+		<link rel="stylesheet" href="css/screen.css">
 		<script>
+			/*
 			$(document).ready(function (event) {
 				// capturar o submit do form
 				$("#f1").submit(function (e) {
-					if ($("#ipass").val() == 5) {
+					alert($("#ipass").val().length);
+					if ($("#ipass").val() > 5) {
 						$("#f1").submit();
 					} else {
-						alert("passwords nao coincidem");
+						alert("passwords muito curta");
 					}
 					e.preventDefault();
 				})
 			})
+			*/
+			$(document).ready( function () {
+				$("#f1").validate(
+					{
+						rules: {
+							vnome: "required",
+							vuser: {
+								required: true,
+								rangelength: [2,4],
+								remote: "checkuser.php",
+								
+							/*	remote: {
+									url: "checkuser.php",
+									data: {
+										zeluis: function () { 
+											return $("#iuser").val();
+										}
+									}
+								}*/
+							} 
+						},
+						messages : {
+							vnome: "obrigatório introduzir o nome"
+							
+						}
+					}
+				)
+			})
+			
 		</script>
 	</head>
 	<body>
-		<form id="f1" name="f1" action="dump.php" method="get">
+		<form id="f1" class="cmxform" name="f1" action="dump.php" method="get">
 			<fieldset id="fs1">
 				<legend>info geral</legend>
+				<p>
 				<label for="inome">Nome:</label><input type="text" id="inome" name="vnome" placeholder="inserir nome" accesskey="n"/>
+				</p><p>
 				<label for="iapelido">Apelido:</label><input type="text" id="iapelido" name="vapelido" value="Silva"/>
-				<br/>
+				</p><p>
 				<label for="iuser">Username:</label><input type="text" id="iuser" name="vuser"/>
-				<br/>
+				</p><p>
 				<label for="iemail">Email:</label><input type="email" id="iemail" name="vemail"/>
 				<br/>
 				<label for="idata">Data de Nascimento:</label><input type="date" id="idata" name="vdata" />
-				<br/>
+				</p><p>
 				<label for="ipass">password</label><input type="password" id="ipass" name="vpass"/>
+				</p><p>
 				<label for="ipass2">re-escreva password:</label><input type="password" id="ipass2" name="vpass2"/>
+				</p><p>
 			</fieldset>
 			<fieldset id="fs2">
 				<legend>género</legend>
-				<label for="igm">M</label><input type="radio" name="vgender" id="igm" value="M" checked="checked"/>
-				<label for="igf">F</label><input type="radio" name="vgender" id="igf" value="F"/>
+				<label for="igm">M<input type="radio" name="vgender" id="igm" value="M" checked="checked"/></label>
+				<label for="igf">F<input type="radio" name="vgender" id="igf" value="F"/></label>
 			</fieldset>
 			<fieldset id="fs3">
 				<legend>Idiomas</legend>
